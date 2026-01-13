@@ -356,3 +356,33 @@ td {
         font-size: 1.3em;
     }
 }
+#toc {
+    background: #fff;
+    padding: 15px;
+    border-radius: 8px;
+    margin-bottom: 30px;
+    box-shadow: 0 2px 6px rgba(0,0,0,0.1);
+}
+
+#toc h2 {
+    margin-bottom: 10px;
+    font-size: 1.4em;
+}
+
+#toc ul {
+    list-style: none;
+    padding: 0;
+}
+
+#toc li {
+    margin: 6px 0;
+}
+
+#toc a {
+    color: #0077cc;
+    text-decoration: none;
+}
+
+#toc a:hover {
+    text-decoration: underline;
+}
