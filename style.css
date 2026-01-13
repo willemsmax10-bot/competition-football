@@ -386,3 +386,44 @@ td {
 #toc a:hover {
     text-decoration: underline;
 }
+#filters {
+    margin: 20px 0;
+}
+
+#filters select {
+    padding: 8px 12px;
+    font-size: 1em;
+    border-radius: 6px;
+}
+body.dark {
+    background: #121212;
+    color: #e5e5e5;
+}
+
+body.dark table {
+    background: #1e1e1e;
+    color: #fff;
+}
+
+body.dark #toc,
+body.dark .competition-block {
+    background: #1e1e1e;
+    color: #fff;
+}
+
+body.dark th {
+    background: #333 !important;
+}
+
+body.dark td {
+    border-color: #444;
+}
+
+#darkmode-toggle {
+    position: fixed;
+    top: 20px;
+    right: 20px;
+    padding: 8px 12px;
+    border-radius: 6px;
+    cursor: pointer;
+}
