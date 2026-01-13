@@ -617,66 +617,53 @@
     </footer>
 
    <!-- Script simple pour les onglets + année automatique -->
-    <script>
-        // Mettre l'année actuelle dans le footer
-        document.getElementById('year').textContent = new Date().getFullYear();
+   <script>
+    // Mettre l'année actuelle dans le footer
+    document.getElementById('year').textContent = new Date().getFullYear();
 
-        // Gestion des boutons de compétition
-        const buttons = document.querySelectorAll('.comp-btn');
-        const blocks = document.querySelectorAll('.competition-block');
+    const buttons = document.querySelectorAll('.comp-btn');
+    const blocks = document.querySelectorAll('.competition-block');
+    const searchInput = document.getElementById('searchInput');
 
-        buttons.forEach(button => {
-            button.addEventListener('click', () => {
-                const targetId = button.getAttribute('data-target');
+    // --- Cacher tous les tableaux au début ---
+    blocks.forEach(block => block.classList.remove('active'));
 
-                // Changer l'état des boutons
-                buttons.forEach(b => b.classList.remove('active'));
-                button.classList.add('active');
+    // --- Cacher tous les boutons au début ---
+    buttons.forEach(btn => btn.classList.remove('show'));
 
-                // Changer les blocs visibles
-                blocks.forEach(block => {
-                    if (block.id === targetId) {
-                        block.classList.add('active');
-                    } else {
-                        block.classList.remove('active');
-                    }
-                });
-            });
-        });
-   // --- FONCTION RECHERCHE COMPÉTITIONS ---
-const searchInput = document.getElementById('searchInput');
-
-searchInput.addEventListener('input', () => {
-    const query = searchInput.value.toLowerCase().trim();
-
-    // Si la recherche est vide → on ne change rien
-    if (query === "") return;
-
-    let found = false;
-
+    // --- Afficher un tableau quand on clique sur un bouton ---
     buttons.forEach(button => {
-        const text = button.textContent.toLowerCase();
-
-        if (text.includes(query)) {
-            found = true;
-
-            // Active le bouton trouvé
-            buttons.forEach(b => b.classList.remove('active'));
-            button.classList.add('active');
+        button.addEventListener('click', () => {
+            const targetId = button.getAttribute('data-target');
 
             // Affiche le bon tableau
-            const targetId = button.getAttribute('data-target');
             blocks.forEach(block => {
                 block.classList.toggle('active', block.id === targetId);
             });
-        }
+        });
     });
 
-    // Si aucune compétition ne correspond
-    if (!found) {
-        blocks.forEach(block => block.classList.remove('active'));
-    }
-});
-    </script>
+    // --- Recherche dynamique ---
+    searchInput.addEventListener('input', () => {
+        const query = searchInput.value.toLowerCase().trim();
+
+        // Si la recherche est vide → cacher tous les boutons et tableaux
+        if (query === "") {
+            buttons.forEach(btn => btn.classList.remove('show'));
+            blocks.forEach(block => block.classList.remove('active'));
+            return;
+        }
+
+        buttons.forEach(button => {
+            const text = button.textContent.toLowerCase();
+
+            if (text.includes(query)) {
+                button.classList.add('show');   // Affiche le bouton
+            } else {
+                button.classList.remove('show'); // Cache le bouton
+            }
+        });
+    });
+</script> 
 </body>
 </html>
