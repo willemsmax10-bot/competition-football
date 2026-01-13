@@ -238,3 +238,17 @@ td {
         padding: 1.8rem 1.5rem;
     }
 }
+.search-box {
+    margin-bottom: 1rem;
+    width: 100%;
+}
+
+#searchInput {
+    width: 100%;
+    padding: 0.7rem 1rem;
+    border-radius: 8px;
+    border: 1px solid #1ea86b;
+    background: #0f1b2a;
+    color: #f5f7fa;
+    font-size: 1rem;
+}
