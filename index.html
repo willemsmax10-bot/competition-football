@@ -1020,7 +1020,43 @@
 
    <!-- Script simple pour les onglets + année automatique -->
    <script>
-    // Année automatique
+    function normalize(str) {
+    return str
+        .toLowerCase()
+        .normalize("NFD")
+        .replace(/[\u0300-\u036f]/g, "")
+        .replace(/[^a-z0-9 ]/g, "");
+}
+       function levenshtein(a, b) {
+    const matrix = Array.from({ length: b.length + 1 }, (_, i) => [i]);
+
+    for (let j = 0; j <= a.length; j++) {
+        matrix[0][j] = j;
+    }
+
+    for (let i = 1; i <= b.length; i++) {
+        for (let j = 1; j <= a.length; j++) {
+            const cost = b[i - 1] === a[j - 1] ? 0 : 1;
+            matrix[i][j] = Math.min(
+                matrix[i - 1][j] + 1,
+                matrix[i][j - 1] + 1,
+                matrix[i - 1][j - 1] + cost
+            );
+        }
+    }
+
+    return matrix[b.length][a.length];
+}
+      function fuzzyMatch(text, query) {
+    text = normalize(text);
+    query = normalize(query);
+
+    if (text.includes(query)) return true;
+
+    let distance = levenshtein(text, query);
+    return distance <= 3;
+}
+       // Année automatique
     document.getElementById('year').textContent = new Date().getFullYear();
 
     const buttons = document.querySelectorAll('.comp-btn');
@@ -1062,8 +1098,8 @@
         if (query === "") return;
 
         let matches = competitions.filter(c =>
-            c.name.toLowerCase().includes(query)
-        );
+    fuzzyMatch(c.name, query)
+);
 
         // --- Suggestions automatiques ---
         if (matches.length > 0) {
@@ -1099,15 +1135,15 @@
         // --- Filtrage des boutons en direct ---
         buttons.forEach(btn => {
             const text = btn.textContent.toLowerCase();
-            if (text.includes(query)) {
-                btn.style.display = "inline-block";
-            }
+            if (fuzzyMatch(text, query)) {
+    btn.style.display = "inline-block";
+}
         });
 
         // --- Filtrage des tableaux en direct ---
         blocks.forEach(block => {
             const text = block.textContent.toLowerCase();
-            if (text.includes(query)) {
+            if (fuzzyMatch(text, query)) {
                 block.classList.add('active');
             }
         });
