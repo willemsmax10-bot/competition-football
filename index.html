@@ -8,7 +8,7 @@
 <link rel="icon" href="favicon.ico" type="image/x-icon">
 <link rel="icon" href="favicon.png" type="image/png">
 <link rel="icon" href="favicon.svg" type="image/svg+xml">
-    
+ <a href="rankings.html" class="button">Voir les classements complets</a>   
     <!-- Lien vers le fichier CSS -->
     <link rel="stylesheet" href="style.css">
 
@@ -25,6 +25,7 @@
                 <p><strong>Période couverte :</strong><br>Depuis la saison 1979‑1980 jusqu’à aujourd’hui.</p>
             </div>
         </div>
+   <button id="darkmode-toggle">🌙 Mode sombre</button>
     </header>
 
     <!-- ESPACE PUB HEADER -->
@@ -1392,7 +1393,17 @@
     </div>
 </article><!-- Tu pourras copier-coller la structure <article> ci-dessus
                  pour ajouter toutes les autres compétitions (Copa Libertadores, Copa América, CAN, Europa League, etc.) -->
-
+<div id="filters">
+    <select id="filter-type">
+        <option value="all">Tous</option>
+        <option value="uefa">Europe</option>
+        <option value="conmebol">Amérique du Sud</option>
+        <option value="concacaf">Amérique du Nord</option>
+        <option value="caf">Afrique</option>
+        <option value="afc">Asie</option>
+        <option value="ofc">Océanie</option>
+    </select>
+</div>
         </section>
         <section id="rankings" class="competition-block">
     <h2>Classements mondiaux (nations & clubs)</h2>
@@ -1611,6 +1622,26 @@
             }
         });
     });
+</script>
+<script>
+document.getElementById("filter-type").addEventListener("change", function() {
+    const value = this.value;
+    const rows = document.querySelectorAll("#rankings tbody tr");
+
+    rows.forEach(row => {
+        const continent = row.children[2]?.textContent.toLowerCase();
+        if (value === "all" || continent === value) {
+            row.style.display = "";
+        } else {
+            row.style.display = "none";
+        }
+    });
+});
+</script>
+<script>
+document.getElementById("darkmode-toggle").addEventListener("click", () => {
+    document.body.classList.toggle("dark");
+});
 </script>
 </body>
 </html>
