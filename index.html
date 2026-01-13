@@ -51,7 +51,9 @@
             </p>
         </section>
 
-        <!-- Onglets / boutons de filtrage -->
+        <div class="search-box">
+    <input type="text" id="searchInput" placeholder="Rechercher une compétition...">
+</div><!-- Onglets / boutons de filtrage -->
         <section class="competition-selector">
             <h2>Choisissez une compétition</h2>
             <div class="competition-buttons">
@@ -613,7 +615,7 @@
         </div>
     </footer>
 
-    <!-- Script simple pour les onglets + année automatique -->
+   <!-- Script simple pour les onglets + année automatique -->
     <script>
         // Mettre l'année actuelle dans le footer
         document.getElementById('year').textContent = new Date().getFullYear();
@@ -640,6 +642,40 @@
                 });
             });
         });
+   // --- FONCTION RECHERCHE COMPÉTITIONS ---
+const searchInput = document.getElementById('searchInput');
+
+searchInput.addEventListener('input', () => {
+    const query = searchInput.value.toLowerCase().trim();
+
+    // Si la recherche est vide → on ne change rien
+    if (query === "") return;
+
+    let found = false;
+
+    buttons.forEach(button => {
+        const text = button.textContent.toLowerCase();
+
+        if (text.includes(query)) {
+            found = true;
+
+            // Active le bouton trouvé
+            buttons.forEach(b => b.classList.remove('active'));
+            button.classList.add('active');
+
+            // Affiche le bon tableau
+            const targetId = button.getAttribute('data-target');
+            blocks.forEach(block => {
+                block.classList.toggle('active', block.id === targetId);
+            });
+        }
+    });
+
+    // Si aucune compétition ne correspond
+    if (!found) {
+        blocks.forEach(block => block.classList.remove('active'));
+    }
+});
     </script>
 </body>
 </html>
