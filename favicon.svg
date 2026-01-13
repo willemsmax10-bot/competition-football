@@ -1,0 +1,90 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg
+    xmlns="http://www.w3.org/2000/svg"
+    width="64"
+    height="64"
+    viewBox="0 0 64 64"
+>
+    <!-- Fond transparent -->
+    <rect width="64" height="64" fill="none"/>
+
+    <!-- Ombre sous le trophée -->
+    <ellipse cx="32" cy="54" rx="14" ry="3" fill="rgba(0,0,0,0.25)"/>
+
+    <!-- Pied du trophée -->
+    <rect x="24" y="44" width="16" height="4" rx="1" ry="1" fill="#8b5a2b"/>
+    <rect x="22" y="48" width="20" height="4" rx="1" ry="1" fill="#704120"/>
+
+    <!-- Tige -->
+    <rect x="29" y="38" width="6" height="6" fill="#f2c14f"/>
+
+    <!-- Coupe principale (corps du trophée) -->
+    <path
+        d="M20 18
+           Q20 10 32 10
+           Q44 10 44 18
+           Q44 28 38 34
+           H26
+           Q20 28 20 18Z"
+        fill="url(#goldGradient)"
+        stroke="#b8891f"
+        stroke-width="1.5"
+    />
+
+    <!-- Anses gauche et droite -->
+    <path
+        d="M20 18
+           C14 18 12 22 12 26
+           C12 31 15 34 19 34"
+        fill="none"
+        stroke="#b8891f"
+        stroke-width="2"
+        stroke-linecap="round"
+    />
+    <path
+        d="M44 18
+           C50 18 52 22 52 26
+           C52 31 49 34 45 34"
+        fill="none"
+        stroke="#b8891f"
+        stroke-width="2"
+        stroke-linecap="round"
+    />
+
+    <!-- Reflet sur la coupe -->
+    <path
+        d="M28 12
+           Q34 13 36 20
+           Q34 19 30 19
+           Q28 16 28 12Z"
+        fill="rgba(255,255,255,0.35)"
+    />
+
+    <!-- Petite étoile au centre -->
+    <path
+        d="M32 20
+           L33.4 22.8
+           L36.5 23.1
+           L34 25
+           L34.7 28
+           L32 26.5
+           L29.3 28
+           L30 25
+           L27.5 23.1
+           L30.6 22.8
+           Z"
+        fill="#ffe17a"
+        stroke="#b8891f"
+        stroke-width="0.5"
+    />
+
+    <!-- Dégradé or -->
+    <defs>
+        <linearGradient id="goldGradient" x1="0" y1="0" x2="0" y2="1">
+            <stop offset="0%" stop-color="#ffe17a"/>
+            <stop offset="40%" stop-color="#f2c14f"/>
+            <stop offset="70%" stop-color="#e0a72e"/>
+            <stop offset="100%" stop-color="#c8881e"/>
+        </linearGradient>
+    </defs>
+</svg>
