@@ -280,3 +280,79 @@ td {
 .comp-btn.show {
     display: inline-block;
 }
+/* ============================
+   SECTION : CLASSEMENTS
+   ============================ */
+
+#rankings {
+    margin-top: 60px;
+    padding: 20px 0;
+}
+
+#rankings h2 {
+    text-align: center;
+    margin-bottom: 10px;
+    font-size: 2em;
+}
+
+.ranking-block {
+    margin-top: 40px;
+}
+
+.ranking-block h3 {
+    margin-bottom: 15px;
+    font-size: 1.6em;
+    border-left: 5px solid #f0c040;
+    padding-left: 10px;
+}
+
+/* TABLEAUX */
+#rankings table {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 0.95em;
+    background: #fff;
+    border-radius: 8px;
+    overflow: hidden;
+}
+
+#rankings thead {
+    background: #222;
+    color: #fff;
+}
+
+#rankings th,
+#rankings td {
+    padding: 12px 10px;
+    text-align: left;
+    border-bottom: 1px solid #ddd;
+}
+
+#rankings tbody tr:nth-child(even) {
+    background: #f7f7f7;
+}
+
+#rankings tbody tr:hover {
+    background: #f0f0f0;
+}
+
+/* Colonne Rang mise en valeur */
+#rankings td:first-child {
+    font-weight: bold;
+    color: #d4a017;
+}
+
+/* Responsive */
+@media (max-width: 700px) {
+    #rankings table {
+        font-size: 0.85em;
+    }
+
+    #rankings h2 {
+        font-size: 1.6em;
+    }
+
+    .ranking-block h3 {
+        font-size: 1.3em;
+    }
+}
