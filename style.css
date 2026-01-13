@@ -252,3 +252,12 @@ td {
     color: #f5f7fa;
     font-size: 1rem;
 }
+/* Cache tous les boutons par défaut */
+.competition-buttons .comp-btn {
+    display: none;
+}
+
+/* Affiche les boutons filtrés */
+.comp-btn.show {
+    display: inline-block;
+}
