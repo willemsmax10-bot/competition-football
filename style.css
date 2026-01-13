@@ -1,0 +1,240 @@
+/* Styles généraux */
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+    background: #0b1724;
+    color: #f5f7fa;
+    line-height: 1.6;
+}
+
+.container {
+    width: 95%;
+    max-width: 1100px;
+    margin: 0 auto;
+}
+
+/* Header */
+.site-header {
+    background: linear-gradient(135deg, #0d253f, #112b4a);
+    border-bottom: 3px solid #1ea86b;
+    padding: 2.5rem 0 1.5rem;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.5);
+}
+
+.header-content {
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+}
+
+.site-header h1 {
+    font-size: 2rem;
+    margin-bottom: 0.5rem;
+}
+
+.site-header p {
+    color: #d7dee7;
+}
+
+.header-highlight {
+    padding: 1rem 1.5rem;
+    border-radius: 8px;
+    background: rgba(17, 43, 74, 0.9);
+    border-left: 4px solid #1ea86b;
+    font-size: 0.95rem;
+}
+
+/* Main content */
+.main-content {
+    padding: 2rem 0 3rem;
+}
+
+.intro h2,
+.competition-selector h2,
+.competition-block h2 {
+    margin-bottom: 0.8rem;
+    font-size: 1.5rem;
+}
+
+.intro p {
+    margin-bottom: 0.7rem;
+}
+
+/* Boutons de compétition */
+.competition-selector {
+    margin: 2rem 0 1.5rem;
+}
+
+.competition-buttons {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+}
+
+.comp-btn {
+    padding: 0.5rem 1rem;
+    border-radius: 999px;
+    border: 1px solid #1ea86b;
+    background: transparent;
+    color: #f5f7fa;
+    cursor: pointer;
+    font-size: 0.95rem;
+    transition: all 0.2s ease;
+}
+
+.comp-btn:hover {
+    background: rgba(30, 168, 107, 0.2);
+}
+
+.comp-btn.active {
+    background: #1ea86b;
+    border-color: #1ea86b;
+    color: #0b1724;
+}
+
+/* Blocs de compétition */
+.competition-block {
+    display: none;
+    margin-bottom: 2.5rem;
+    padding: 1.5rem 1rem;
+    border-radius: 8px;
+    background: rgba(9, 19, 30, 0.9);
+    border: 1px solid #223447;
+    box-shadow: 0 3px 10px rgba(0, 0, 0, 0.4);
+}
+
+.competition-block.active {
+    display: block;
+}
+
+.comp-description {
+    margin-bottom: 1rem;
+    color: #d7dee7;
+}
+
+/* Tables */
+.responsive-table {
+    width: 100%;
+    overflow-x: auto;
+}
+
+table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-bottom: 1rem;
+}
+
+thead {
+    background: #132235;
+}
+
+th, td {
+    padding: 0.6rem 0.7rem;
+    text-align: left;
+    font-size: 0.95rem;
+}
+
+tbody tr:nth-child(odd) {
+    background: #0f1b2a;
+}
+
+tbody tr:nth-child(even) {
+    background: #101f32;
+}
+
+tbody tr:hover {
+    background: #1b304b;
+}
+
+th {
+    border-bottom: 2px solid #1ea86b;
+    font-weight: 600;
+}
+
+td {
+    border-bottom: 1px solid #223447;
+}
+
+/* Sections pub */
+.ad-section {
+    margin: 1.5rem 0;
+    display: flex;
+    justify-content: center;
+}
+
+.ad-slot {
+    border-radius: 8px;
+    border: 1px dashed #3b4f65;
+    background: rgba(8, 14, 22, 0.9);
+    color: #9aa7bb;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    padding: 0.8rem;
+    min-height: 60px;
+}
+
+/* Tailles indicatives (tu adapteras aux formats Adsterra) */
+.ad-slot-large {
+    width: 100%;
+    max-width: 970px;
+    min-height: 90px;
+}
+
+.ad-slot-horizontal {
+    width: 100%;
+    max-width: 728px;
+    min-height: 90px;
+}
+
+.ad-slot-small {
+    width: 100%;
+    max-width: 468px;
+    min-height: 60px;
+}
+
+.ad-placeholder {
+    font-size: 0.85rem;
+    opacity: 0.8;
+}
+
+/* Footer */
+.site-footer {
+    border-top: 1px solid #223447;
+    padding: 1.5rem 0 2rem;
+    background: #060b11;
+    margin-top: 2rem;
+}
+
+.footer-content {
+    text-align: center;
+    margin-bottom: 1rem;
+}
+
+.footer-content p {
+    font-size: 0.85rem;
+    color: #9aa7bb;
+}
+
+/* Responsive */
+@media (min-width: 768px) {
+    .header-content {
+        flex-direction: row;
+        justify-content: space-between;
+        align-items: center;
+    }
+
+    .site-header h1 {
+        font-size: 2.2rem;
+    }
+
+    .competition-block {
+        padding: 1.8rem 1.5rem;
+    }
+}
