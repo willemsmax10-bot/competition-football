@@ -15,6 +15,10 @@
     <!-- Tu pourras ajouter ici certains scripts Adsterra si besoin -->
 </head>
 <body>
+    <div class="search-box">
+    <input type="text" id="searchInput" placeholder="Rechercher une compétition, un pays, un club, une année...">
+    <div id="suggestions" class="suggestions"></div>
+</div>
     <header class="site-header">
         <div class="container header-content">
             <div>
@@ -102,10 +106,7 @@
        <!-- Onglets / boutons de filtrage -->
         <section class="competition-selector">
             <h2>Choisissez une compétition</h2>
-             <div class="search-box">
-    <input type="text" id="searchInput" placeholder="Rechercher une compétition, un pays, un club, une année...">
-    <div id="suggestions" class="suggestions"></div>
-</div>
+             
             <div class="competition-buttons">
                 <button class="comp-btn active" data-target="ligue-des-champions">Ligue des Champions (LDC)</button>
                 <button class="comp-btn" data-target="coupe-du-monde">Coupe du Monde (FIFA)</button>
