@@ -28,11 +28,6 @@
 </head>
 
     <body>
-    <!-- BARRE DE RECHERCHE TOUT EN HAUT -->
-<div class="search-box">
-    <input type="text" id="searchInput" placeholder="Rechercher une compétition, un pays, un club, une année...">
-    <div id="suggestions" class="suggestions"></div>
-</div>
 
         <header class="site-header">
     <div class="container header-content">
@@ -54,79 +49,23 @@
     <!-- Bouton mode sombre -->
     <button id="darkmode-toggle" class="darkmode-btn">🌙 Mode sombre</button>
 
-</header>
-
-    <h2>Classement des Nations</h2>
-    <table id="ranking-nations">
-        <thead>
-            <tr>
-                <th>Rang</th>
-                <th>Pays</th>
-                <th>Continent</th>
-                <th>Trophées</th>
-            </tr>
-        </thead>
-        <tbody></tbody>
-    </table>
-
-    <h2>Classement des Clubs</h2>
-    <table id="ranking-clubs">
-        <thead>
-            <tr>
-                <th>Rang</th>
-                <th>Club</th>
-                <th>Pays</th>
-                <th>Confédération</th>
-                <th>Trophées</th>
-            </tr>
-        </thead>
-        <tbody></tbody>
-    </table>
-
-</section>
-    <!-- ESPACE PUB HEADER -->
-    <section class="ad-section">
-        <div class="container">
-            <div class="ad-slot ad-slot-large">
-                <!-- ADSTERRA HEADER CODE ICI -->
-                <!-- Colle ici le script Adsterra (par ex. banner) -->
-                <!-- Exemple:
-                <script type="text/javascript" src="https://example.com/adsterra-script.js"></script>
-                -->
-                <p class="ad-placeholder">Espace publicité (header) – Adsterra</p>
-            </div>
+            <section class="ad-section">
+    <div class="container">
+        <div class="ad-slot ad-slot-large">
+            <p class="ad-placeholder">Espace publicité (header) – Adsterra</p>
         </div>
-    </section>
-<section id="rankings">
-    <h2>Classement des Nations</h2>
-
-    <table id="ranking-nations">
-        <thead>
-            <tr>
-                <th>Rang</th>
-                <th>Pays</th>
-                <th>Continent</th>
-                <th>Trophées</th>
-            </tr>
-        </thead>
-        <tbody></tbody>
-    </table>
-
-    <h2>Classement des Clubs</h2>
-
-    <table id="ranking-clubs">
-        <thead>
-            <tr>
-                <th>Rang</th>
-                <th>Club</th>
-                <th>Pays</th>
-                <th>Confédération</th>
-                <th>Trophées</th>
-            </tr>
-        </thead>
-        <tbody></tbody>
-    </table>
+    </div>
 </section>
+
+        </header>
+
+        <div class="search-box">
+    <input type="text" id="searchInput" placeholder="Rechercher une compétition, un club, un pays, une année...">
+    <div id="suggestions" class="suggestions"></div>
+    <div id="no-results" class="no-results" style="display:none;">Aucun résultat trouvé.</div>
+</div>
+        
+
     <main class="container main-content">
         <nav id="toc">
     <h2>Navigation</h2>
@@ -240,7 +179,7 @@
         <section class="tables-section">
 
             <!-- LIGUE DES CHAMPIONS -->
-            <article id="ligue-des-champions" class="competition-block active">
+            <article id="ligue-des-champions" class="competition-block">
                 <h2>Ligue des Champions de l’UEFA(LDC)</h2>
                 <p class="comp-description">
                     Palmarès de la Ligue des Champions (anciennement Coupe des clubs champions européens), 
@@ -1507,89 +1446,39 @@
     </div>
 </article><!-- Tu pourras copier-coller la structure <article> ci-dessus
                  pour ajouter toutes les autres compétitions (Copa Libertadores, Copa América, CAN, Europa League, etc.) -->
-<div id="filters">
-    <select id="filter-type">
-        <option value="all">Tous</option>
-        <option value="uefa">Europe</option>
-        <option value="conmebol">Amérique du Sud</option>
-        <option value="concacaf">Amérique du Nord</option>
-        <option value="caf">Afrique</option>
-        <option value="afc">Asie</option>
-        <option value="ofc">Océanie</option>
-    </select>
-</div>
-        </section>
+
+            
+            
         <section id="rankings" class="competition-block">
     <h2>Classements mondiaux (nations & clubs)</h2>
-    <p class="comp-description">
-        Classements basés sur les trophées internationaux majeurs remportés depuis 1980.
-    </p>
+<h2>Classement des Nations</h2>
 
-    <!-- Nations -->
-    <article class="ranking-block">
-        <h3>Classement des nations</h3>
-        <div class="responsive-table">
-            <table>
-                <thead>
-                    <tr>
-                        <th>Rang</th>
-                        <th>Pays</th>
-                        <th>Continent</th>
-                        <th>Trophées</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <tr><td>1</td><td>Argentine</td><td>CONMEBOL</td><td>10</td></tr>
-                    <tr><td>2</td><td>France</td><td>UEFA</td><td>9</td></tr>
-                    <tr><td>3</td><td>Brésil</td><td>CONMEBOL</td><td>8</td></tr>
-                    <tr><td>4</td><td>Allemagne</td><td>UEFA</td><td>6</td></tr>
-                    <tr><td>5</td><td>Espagne</td><td>UEFA</td><td>5</td></tr>
-                    <tr><td>6</td><td>Mexique</td><td>CONCACAF</td><td>5</td></tr>
-                    <tr><td>7</td><td>États-Unis</td><td>CONCACAF</td><td>5</td></tr>
-                    <tr><td>8</td><td>Italie</td><td>UEFA</td><td>3</td></tr>
-                    <tr><td>9</td><td>Arabie Saoudite</td><td>AFC</td><td>3</td></tr>
-                    <tr><td>10</td><td>Japon</td><td>AFC</td><td>3</td></tr>
-                    <tr><td>11</td><td>Qatar</td><td>AFC</td><td>2</td></tr>
-                    <tr><td>12</td><td>Égypte</td><td>CAF</td><td>4</td></tr>
-                    <tr><td>13</td><td>Cameroun</td><td>CAF</td><td>3</td></tr>
-                    <tr><td>14</td><td>Nigeria</td><td>CAF</td><td>3</td></tr>
-                    <tr><td>15</td><td>Nouvelle-Zélande</td><td>OFC</td><td>5</td></tr>
-                </tbody>
-            </table>
-        </div>
-    </article>
+<table id="ranking-nations">
+    <thead>
+        <tr>
+            <th>Rang</th>
+            <th>Pays</th>
+            <th>Continent</th>
+            <th>Trophées</th>
+        </tr>
+    </thead>
+    <tbody></tbody>
+</table>
+            <h2>Classement des Clubs</h2>
 
-    <!-- Clubs -->
-    <article class="ranking-block">
-        <h3>Classement des clubs</h3>
-        <div class="responsive-table">
-            <table>
-                <thead>
-                    <tr>
-                        <th>Rang</th>
-                        <th>Club</th>
-                        <th>Pays</th>
-                        <th>Confédération</th>
-                        <th>Trophées</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <tr><td>1</td><td>Al Ahly</td><td>Égypte</td><td>CAF</td><td>22</td></tr>
-                    <tr><td>2</td><td>Real Madrid</td><td>Espagne</td><td>UEFA</td><td>17</td></tr>
-                    <tr><td>3</td><td>Boca Juniors</td><td>Argentine</td><td>CONMEBOL</td><td>12</td></tr>
-                    <tr><td>4</td><td>FC Barcelone</td><td>Espagne</td><td>UEFA</td><td>11</td></tr>
-                    <tr><td>5</td><td>TP Mazembe</td><td>RD Congo</td><td>CAF</td><td>11</td></tr>
-                    <tr><td>6</td><td>Zamalek</td><td>Égypte</td><td>CAF</td><td>10</td></tr>
-                    <tr><td>7</td><td>Auckland City</td><td>Nouvelle-Zélande</td><td>OFC</td><td>10</td></tr>
-                    <tr><td>8</td><td>São Paulo</td><td>Brésil</td><td>CONMEBOL</td><td>7</td></tr>
-                    <tr><td>9</td><td>Independiente</td><td>Argentine</td><td>CONMEBOL</td><td>7</td></tr>
-                    <tr><td>10</td><td>América</td><td>Mexique</td><td>CONCACAF</td><td>6</td></tr>
-                </tbody>
-            </table>
-        </div>
-    </article>
+<table id="ranking-clubs">
+    <thead>
+        <tr>
+            <th>Rang</th>
+            <th>Club</th>
+            <th>Pays</th>
+            <th>Confédération</th>
+            <th>Trophées</th>
+        </tr>
+    </thead>
+    <tbody></tbody>
+</table>
 </section>
-    </main>
 
     <!-- ESPACE PUB FOOTER -->
     <footer class="site-footer">
@@ -1606,7 +1495,11 @@
         </div>
     </footer>
 
- <script>
+
+        
+        
+        
+        <script>
 // --- Normalisation & fuzzy matching ---
 function normalize(str) {
     return str
