@@ -437,3 +437,6 @@ body.dark td {
     text-align: center;
     padding: 20px;
 }
+.comp-btn {
+    display: none;
+}
