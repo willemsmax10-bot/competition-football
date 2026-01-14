@@ -15,7 +15,8 @@
     <!-- Tu pourras ajouter ici certains scripts Adsterra si besoin -->
 </head>
 <body>
-    <div class="search-box">
+    <!-- BARRE DE RECHERCHE TOUT EN HAUT -->
+<div class="search-box">
     <input type="text" id="searchInput" placeholder="Rechercher une compétition, un pays, un club, une année...">
     <div id="suggestions" class="suggestions"></div>
 </div>
@@ -31,7 +32,37 @@
         </div>
    <button id="darkmode-toggle">🌙 Mode sombre</button>
     </header>
+<!-- SECTION DES CLASSEMENTS (CACHÉE AU DÉPART) -->
+<section id="rankings" style="display:none;">
 
+    <h2>Classement des Nations</h2>
+    <table id="ranking-nations">
+        <thead>
+            <tr>
+                <th>Rang</th>
+                <th>Pays</th>
+                <th>Continent</th>
+                <th>Trophées</th>
+            </tr>
+        </thead>
+        <tbody></tbody>
+    </table>
+
+    <h2>Classement des Clubs</h2>
+    <table id="ranking-clubs">
+        <thead>
+            <tr>
+                <th>Rang</th>
+                <th>Club</th>
+                <th>Pays</th>
+                <th>Confédération</th>
+                <th>Trophées</th>
+            </tr>
+        </thead>
+        <tbody></tbody>
+    </table>
+
+</section>
     <!-- ESPACE PUB HEADER -->
     <section class="ad-section">
         <div class="container">
@@ -141,8 +172,10 @@
                 <button class="comp-btn" data-target="recopa-sudamericana">Recopa Sudamericana</button>
                 <button class="comp-btn" data-target="supercopa-espana">Supercopa d’Espagne</button>
                 <button class="comp-btn" data-target="community-shield">Community Shield (Angleterre)</button>
+            <!-- BOUTON POUR AFFICHER LES CLASSEMENTS -->
+<button id="show-rankings-btn" class="comp-btn">Afficher les classements</button>
             </div>
-       <button id="show-rankings-btn" class="comp-btn">Afficher les classements</button>
+       
         </section>
 <section id="rankings" style="display:none;">
 
@@ -1762,6 +1795,12 @@ document.getElementById("show-rankings-btn").addEventListener("click", () => {
     } else {
         section.style.display = "none";
     }
+});
+</script>
+    <script>
+document.getElementById("show-rankings-btn").addEventListener("click", () => {
+    const section = document.getElementById("rankings");
+    section.style.display = section.style.display === "none" ? "block" : "none";
 });
 </script>
 </body>
