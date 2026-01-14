@@ -142,8 +142,38 @@
                 <button class="comp-btn" data-target="supercopa-espana">Supercopa d’Espagne</button>
                 <button class="comp-btn" data-target="community-shield">Community Shield (Angleterre)</button>
             </div>
+       <button id="show-rankings-btn" class="comp-btn">Afficher les classements</button>
         </section>
+<section id="rankings" style="display:none;">
 
+    <h2>Classement des Nations</h2>
+    <table id="ranking-nations">
+        <thead>
+            <tr>
+                <th>Rang</th>
+                <th>Pays</th>
+                <th>Continent</th>
+                <th>Trophées</th>
+            </tr>
+        </thead>
+        <tbody></tbody>
+    </table>
+
+    <h2>Classement des Clubs</h2>
+    <table id="ranking-clubs">
+        <thead>
+            <tr>
+                <th>Rang</th>
+                <th>Club</th>
+                <th>Pays</th>
+                <th>Confédération</th>
+                <th>Trophées</th>
+            </tr>
+        </thead>
+        <tbody></tbody>
+    </table>
+
+</section>
         <!-- ESPACE PUB ENTRE INTRO ET TABLEAUX -->
         <section class="ad-section">
             <div class="ad-slot ad-slot-horizontal">
@@ -1722,6 +1752,17 @@ function generateRankings() {
 }
 
 document.addEventListener("DOMContentLoaded", generateRankings);
+</script>
+<script>
+document.getElementById("show-rankings-btn").addEventListener("click", () => {
+    const section = document.getElementById("rankings");
+
+    if (section.style.display === "none") {
+        section.style.display = "block";
+    } else {
+        section.style.display = "none";
+    }
+});
 </script>
 </body>
 </html>
