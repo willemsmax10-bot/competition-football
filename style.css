@@ -256,16 +256,6 @@ td {
 .competition-buttons .comp-btn {
     display: none;
 }
-.suggestions {
-    background: #0f1b2a;
-    border: 1px solid #1ea86b;
-    border-radius: 8px;
-    margin-top: 4px;
-    display: none;
-    position: absolute;
-    width: 100%;
-    z-index: 10;
-}
 
 .suggestion-item {
     padding: 0.6rem 1rem;
