@@ -466,11 +466,11 @@ body.dark td {
     width: 100%;
     display: flex;
     justify-content: center;
-    margin: 1.5rem 0;
+    margin: 2rem 0;
 }
 
 #searchInput {
-    width: 35%;          /* Réduit la largeur globale */
+    width: 40%;          /* Réduit la largeur globale */
     max-width: 350px;    /* Taille maximale compacte */
     min-width: 220px;    /* Pour mobile */
     border-radius: 50px; /* Tu l’as déjà, mais je le laisse ici */
