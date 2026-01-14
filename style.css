@@ -434,3 +434,9 @@ body.dark td {
     text-align: center;
     margin-top: 20px;
 }
+.intro {
+    max-width: 800px;
+    margin: 0 auto;
+    text-align: center;
+    padding: 20px;
+}
