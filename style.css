@@ -470,8 +470,25 @@ body.dark td {
 }
 
 #searchInput {
-    width: 50%;          /* Réduit la largeur globale */
-    max-width: 350px;    /* Taille maximale compacte */
-    min-width: 220px;    /* Pour mobile */
-    border-radius: 50px; /* Tu l’as déjà, mais je le laisse ici */
+    width: 35%;              /* ta largeur actuelle */
+    max-width: 350px;        /* ne change pas */
+    min-width: 220px;        /* ne change pas */
+
+    padding: 0.9rem 1.2rem;  /* plus épais = plus visible */
+    border-radius: 50px;     /* arrondi moderne */
+    border: 2px solid #1ea86b; /* bordure plus forte */
+    background: #0f1b2a;     /* fond actuel */
+    color: #f5f7fa;
+
+    font-size: 1.05rem;      /* légèrement plus grand */
+    font-weight: 500;        /* plus lisible */
+
+    box-shadow: 0 0 12px rgba(30, 168, 107, 0.35); /* halo vert discret */
+    transition: 0.2s ease;
+}
+
+#searchInput:focus {
+    border-color: #27c97f;
+    box-shadow: 0 0 18px rgba(39, 201, 127, 0.45);
+    outline: none;
 }
