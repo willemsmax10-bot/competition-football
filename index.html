@@ -49,39 +49,25 @@
     <!-- Bouton mode sombre -->
     <button id="darkmode-toggle" class="darkmode-btn">🌙 Mode sombre</button>
 
-            <section class="ad-section">
+            
+</section>
+
+        </header>
+<section class="ad-section">
     <div class="container">
         <div class="ad-slot ad-slot-large">
             <p class="ad-placeholder">Espace publicité (header) – Adsterra</p>
         </div>
     </div>
-</section>
-
-        </header>
-
         <div class="search-box">
     <input type="text" id="searchInput" placeholder="Rechercher une compétition, un club, un pays, une année...">
-    <div id="suggestions" class="suggestions" style="display:none;"></div>
-            <div id="no-results" class="no-results" style="display:none;">Aucun résultat trouvé.</div>
+    <div id="suggestions" class="suggestions"></div>
+    <div id="no-results" class="no-results" style="display:none;">Aucun résultat trouvé.</div>
 </div>
         
 
     <main class="container main-content">
-        <nav id="toc">
-    <h2>Navigation</h2>
-    <ul>
-        <li><a href="#world-cup">Coupe du Monde</a></li>
-        <li><a href="#euro">Euro</a></li>
-        <li><a href="#copa-america">Copa América</a></li>
-        <li><a href="#can">CAN</a></li>
-        <li><a href="#asian-cup">Asian Cup</a></li>
-        <li><a href="#gold-cup">Gold Cup</a></li>
-        <li><a href="#ofc-nations-cup">OFC Nations Cup</a></li>
-        <li><a href="#nations-league">Nations League</a></li>
-        <li><a href="#chan">CHAN</a></li>
-        <li><a href="#rankings">Classements</a></li>
-    </ul>
-</nav>
+    
         <section class="intro">
             <h2>Comment utiliser ce site ?</h2>
             <p>
@@ -1578,21 +1564,23 @@ document.addEventListener("DOMContentLoaded", () => {
     });
 
     // --- Recherche floue ---
-    if (searchInput) {
-        searchInput.addEventListener("input", () => {
-            const query = searchInput.value.toLowerCase().trim();
+   searchInput.addEventListener("input", () => {
+    const query = searchInput.value.toLowerCase().trim();
 
-            // Réinitialisation de l'affichage
-            }
-            if (noResultsBox) {
-                noResultsBox.style.display = "none";
-            }
-            buttons.forEach(btn => btn.style.display = "none");
-            blocks.forEach(block => block.classList.remove("active"));
+    // Réinitialisation de l'affichage
+    if (suggestionsBox) {
+        suggestionsBox.innerHTML = "";
+        suggestionsBox.style.display = "none";
+    }
+    if (noResultsBox) {
+        noResultsBox.style.display = "none";
+    }
+    buttons.forEach(btn => btn.style.display = "none");
+    blocks.forEach(block => block.classList.remove("active"));
 
-            if (query === "") {
-                return;
-            }
+    if (query === "") {
+        return;
+    }
 
             // On cherche sur le nom du bouton + contenu du bloc
             const matches = competitions.filter(c =>
