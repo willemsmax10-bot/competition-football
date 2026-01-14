@@ -2,38 +2,59 @@
 <html lang="fr">
 <head>
     <meta charset="UTF-8">
-    <title>Palmarès grandes compétitions de football depuis 1980 </title>
+    <title>Palmarès grandes compétitions de football depuis 1980</title>
+
     <meta name="description" content="Découvrez les vainqueurs et finalistes des plus grandes compétitions de football mondial depuis 1980. Palmarès clair, sérieux et agréable à consulter.">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<link rel="icon" href="favicon.ico" type="image/x-icon">
-<link rel="icon" href="favicon.png" type="image/png">
-<link rel="icon" href="favicon.svg" type="image/svg+xml">
- <a href="rankings.html" class="button">Voir les classements complets</a>   
-    <!-- Lien vers le fichier CSS -->
+
+    <!-- Favicons -->
+    <link rel="icon" href="favicon.ico" type="image/x-icon">
+    <link rel="icon" href="favicon.png" type="image/png">
+    <link rel="icon" href="favicon.svg" type="image/svg+xml">
+
+    <!-- Feuille de style principale -->
     <link rel="stylesheet" href="style.css">
 
-    <!-- Tu pourras ajouter ici certains scripts Adsterra si besoin -->
+    <!-- (Optionnel) Préchargement pour accélérer l'affichage -->
+    <link rel="preload" href="style.css" as="style">
+
+    <!-- (Optionnel) SEO / Réseaux sociaux -->
+    <meta property="og:title" content="Palmarès grandes compétitions de football depuis 1980">
+    <meta property="og:description" content="Tous les vainqueurs et finalistes des grandes compétitions mondiales depuis 1980.">
+    <meta property="og:type" content="website">
+
+    <!-- (Optionnel) Couleur du thème mobile -->
+    <meta name="theme-color" content="#0a0a0a">
 </head>
-<body>
+
+    <body>
     <!-- BARRE DE RECHERCHE TOUT EN HAUT -->
 <div class="search-box">
     <input type="text" id="searchInput" placeholder="Rechercher une compétition, un pays, un club, une année...">
     <div id="suggestions" class="suggestions"></div>
 </div>
-    <header class="site-header">
-        <div class="container header-content">
-            <div>
-                <h1>Palmarès des grandes compétitions mondial de football</h1>
-                <p>Retrouvez ici les vainqueurs et finalistes des principales compétitions mondiales depuis 1980. Un regard clair, sérieux et agréable sur l’histoire du football.</p>
-            </div>
-            <div class="header-highlight">
-                <p><strong>Période couverte :</strong><br>Depuis la saison 1979‑1980 jusqu’à aujourd’hui.</p>
-            </div>
+
+        <header class="site-header">
+    <div class="container header-content">
+
+        <div class="header-left">
+            <h1>Palmarès des grandes compétitions mondiales de football</h1>
+            <p>
+                Retrouvez ici les vainqueurs et finalistes des principales compétitions mondiales depuis 1980.
+                Un regard clair, sérieux et agréable sur l’histoire du football.
+            </p>
         </div>
-   <button id="darkmode-toggle">🌙 Mode sombre</button>
-    </header>
-<!-- SECTION DES CLASSEMENTS (CACHÉE AU DÉPART) -->
-<section id="rankings" style="display:none;">
+
+        <div class="header-highlight">
+            <p><strong>Période couverte :</strong><br>Depuis la saison 1979‑1980 jusqu’à aujourd’hui.</p>
+        </div>
+
+    </div>
+
+    <!-- Bouton mode sombre -->
+    <button id="darkmode-toggle" class="darkmode-btn">🌙 Mode sombre</button>
+
+</header>
 
     <h2>Classement des Nations</h2>
     <table id="ranking-nations">
@@ -1585,22 +1606,21 @@
         </div>
     </footer>
 
-   <!-- Script simple pour les onglets + année automatique -->
-   <script>
-    function normalize(str) {
+ <script>
+// --- Normalisation & fuzzy matching ---
+function normalize(str) {
     return str
         .toLowerCase()
         .normalize("NFD")
         .replace(/[\u0300-\u036f]/g, "")
         .replace(/[^a-z0-9 ]/g, "");
 }
-       function levenshtein(a, b) {
-    const matrix = Array.from({ length: b.length + 1 }, (_, i) => [i]);
 
+function levenshtein(a, b) {
+    const matrix = Array.from({ length: b.length + 1 }, (_, i) => [i]);
     for (let j = 0; j <= a.length; j++) {
         matrix[0][j] = j;
     }
-
     for (let i = 1; i <= b.length; i++) {
         for (let j = 1; j <= a.length; j++) {
             const cost = b[i - 1] === a[j - 1] ? 0 : 1;
@@ -1611,197 +1631,170 @@
             );
         }
     }
-
     return matrix[b.length][a.length];
 }
-      function fuzzyMatch(text, query) {
+
+function fuzzyMatch(text, query) {
     text = normalize(text);
     query = normalize(query);
-
+    if (query.length === 0) return false;
     if (text.includes(query)) return true;
-
-    let distance = levenshtein(text, query);
+    const distance = levenshtein(text, query);
     return distance <= 3;
 }
-       // Année automatique
-    document.getElementById('year').textContent = new Date().getFullYear();
 
-    const buttons = document.querySelectorAll('.comp-btn');
-    const blocks = document.querySelectorAll('.competition-block');
-    const searchInput = document.getElementById('searchInput');
-    const suggestionsBox = document.getElementById('suggestions');
+// --- Initialisation générale ---
+document.addEventListener("DOMContentLoaded", () => {
+    // Année automatique footer
+    const yearSpan = document.getElementById("year");
+    if (yearSpan) {
+        yearSpan.textContent = new Date().getFullYear();
+    }
 
-    // Liste des compétitions (pour suggestions)
-    const competitions = Array.from(buttons).map(btn => ({
-        name: btn.textContent.trim(),
-        target: btn.getAttribute('data-target')
-    }));
+    const buttons = document.querySelectorAll(".comp-btn");
+    const blocks = document.querySelectorAll(".competition-block");
+    const searchInput = document.getElementById("searchInput");
+    const suggestionsBox = document.getElementById("suggestions");
+    const noResultsBox = document.getElementById("no-results");
 
-    // Cache tout au début
+    // Liste des compétitions : bouton + bloc associé
+    const competitions = Array.from(buttons).map(btn => {
+        const target = btn.getAttribute("data-target");
+        const block = document.getElementById(target);
+        const textContent = (btn.textContent + " " + (block ? block.textContent : "")).toLowerCase();
+        return {
+            name: btn.textContent.trim(),
+            target,
+            block,
+            textContent
+        };
+    });
+
+    // Tout cacher au début
     buttons.forEach(btn => btn.style.display = "none");
-    blocks.forEach(block => block.classList.remove('active'));
+    blocks.forEach(block => block.classList.remove("active"));
 
-    // --- Afficher un tableau quand on clique sur un bouton ---
+    // --- Clic sur un bouton de compétition ---
     buttons.forEach(button => {
-        button.addEventListener('click', () => {
-            const targetId = button.getAttribute('data-target');
-
+        button.addEventListener("click", () => {
+            const targetId = button.getAttribute("data-target");
             blocks.forEach(block => {
-                block.classList.toggle('active', block.id === targetId);
+                block.classList.toggle("active", block.id === targetId);
             });
         });
     });
 
-    // --- Fonction de recherche ---
-    searchInput.addEventListener('input', () => {
-        const query = searchInput.value.toLowerCase().trim();
+    // --- Recherche floue ---
+    if (searchInput) {
+        searchInput.addEventListener("input", () => {
+            const query = searchInput.value.toLowerCase().trim();
 
-        // Réinitialisation
-        suggestionsBox.innerHTML = "";
-        suggestionsBox.style.display = "none";
-        buttons.forEach(btn => btn.style.display = "none");
-        blocks.forEach(block => block.classList.remove('active'));
+            // Réinitialisation de l'affichage
+            if (suggestionsBox) {
+                suggestionsBox.innerHTML = "";
+                suggestionsBox.style.display = "none";
+            }
+            if (noResultsBox) {
+                noResultsBox.style.display = "none";
+            }
+            buttons.forEach(btn => btn.style.display = "none");
+            blocks.forEach(block => block.classList.remove("active"));
 
-        if (query === "") return;
+            if (query === "") {
+                return;
+            }
 
-        let matches = competitions.filter(c =>
-    fuzzyMatch(c.name, query)
-);
+            // On cherche sur le nom du bouton + contenu du bloc
+            const matches = competitions.filter(c =>
+                fuzzyMatch(c.name, query) || fuzzyMatch(c.textContent, query)
+            );
 
-        // --- Suggestions automatiques ---
-        if (matches.length > 0) {
-            suggestionsBox.style.display = "block";
+            if (matches.length === 0) {
+                if (noResultsBox) {
+                    noResultsBox.style.display = "block";
+                }
+                return;
+            }
+
+            // Afficher les boutons correspondants
             matches.forEach(match => {
-                const item = document.createElement('div');
-                item.classList.add('suggestion-item');
-                item.textContent = match.name;
-
-                item.addEventListener('click', () => {
-                    searchInput.value = match.name;
-                    suggestionsBox.style.display = "none";
-
-                    // Affiche le bouton correspondant
-                    buttons.forEach(btn => {
-                        if (btn.getAttribute('data-target') === match.target) {
-                            btn.style.display = "inline-block";
-                        } else {
-                            btn.style.display = "none";
-                        }
-                    });
-
-                    // Affiche le tableau correspondant
-                    blocks.forEach(block => {
-                        block.classList.toggle('active', block.id === match.target);
-                    });
-                });
-
-                suggestionsBox.appendChild(item);
+                const btn = Array.from(buttons).find(b => b.getAttribute("data-target") === match.target);
+                if (btn) {
+                    btn.style.display = "inline-block";
+                }
             });
-        }
 
-        // --- Filtrage des boutons en direct ---
-        buttons.forEach(btn => {
-            const text = btn.textContent.toLowerCase();
-            if (fuzzyMatch(text, query)) {
-    btn.style.display = "inline-block";
-}
-        });
+            // Suggestions cliquables (optionnel : on peut proposer les noms)
+            if (suggestionsBox) {
+                suggestionsBox.style.display = "block";
+                matches.forEach(match => {
+                    const item = document.createElement("div");
+                    item.classList.add("suggestion-item");
+                    item.textContent = match.name;
+                    item.addEventListener("click", () => {
+                        searchInput.value = match.name;
+                        suggestionsBox.style.display = "none";
+                        if (noResultsBox) noResultsBox.style.display = "none";
 
-        // --- Filtrage des tableaux en direct ---
-        blocks.forEach(block => {
-            const text = block.textContent.toLowerCase();
-            if (fuzzyMatch(text, query)) {
-                block.classList.add('active');
+                        // Affiche uniquement le bouton de cette compétition
+                        buttons.forEach(btn => {
+                            if (btn.getAttribute("data-target") === match.target) {
+                                btn.style.display = "inline-block";
+                            } else {
+                                btn.style.display = "none";
+                            }
+                        });
+
+                        // Affiche uniquement son tableau
+                        blocks.forEach(block => {
+                            block.classList.toggle("active", block.id === match.target);
+                        });
+                    });
+                    suggestionsBox.appendChild(item);
+                });
             }
         });
-    });
-</script>
-<script>
-document.getElementById("filter-type").addEventListener("change", function() {
-    const value = this.value;
-    const rows = document.querySelectorAll("#rankings tbody tr");
+    }
 
-    rows.forEach(row => {
-        const continent = row.children[2]?.textContent.toLowerCase();
-        if (value === "all" || continent === value) {
-            row.style.display = "";
-        } else {
-            row.style.display = "none";
-        }
-    });
-});
-</script>
-<script>
-document.getElementById("darkmode-toggle").addEventListener("click", () => {
-    document.body.classList.toggle("dark");
-});
-</script>
-   
-<script>
-function generateRankings() {
-    const nationWins = {};
+    // --- Bouton "Afficher les classements" ---
+    const showRankingsBtn = document.getElementById("show-rankings-btn");
+    const rankingsSection = document.getElementById("rankings");
 
-    // Trouver tous les tableaux de compétitions
-    const tables = document.querySelectorAll(".competition-block table");
-
-    tables.forEach(table => {
-        const headers = Array.from(table.querySelectorAll("th")).map(h => h.textContent.trim().toLowerCase());
-
-        // Trouver l'index de la colonne "Vainqueur"
-        const winnerIndex = headers.indexOf("vainqueur");
-
-        if (winnerIndex === -1) return; // pas de colonne vainqueur
-
-        // Lire toutes les lignes du tableau
-        table.querySelectorAll("tbody tr").forEach(row => {
-            const cells = row.querySelectorAll("td");
-            const winner = cells[winnerIndex]?.textContent.trim();
-
-            if (!winner) return;
-
-            if (!nationWins[winner]) nationWins[winner] = 0;
-            nationWins[winner]++;
+    if (showRankingsBtn && rankingsSection) {
+        rankingsSection.style.display = "none"; // caché au départ
+        showRankingsBtn.addEventListener("click", () => {
+            rankingsSection.style.display = (rankingsSection.style.display === "none" || rankingsSection.style.display === "") 
+                ? "block" 
+                : "none";
         });
-    });
+    }
 
-    // Convertir en tableau trié
-    const sortedNations = Object.entries(nationWins)
-        .sort((a, b) => b[1] - a[1]);
+    // --- Filtre par continent (si tu l'utilises) ---
+    const filterSelect = document.getElementById("filter-type");
+    if (filterSelect && rankingsSection) {
+        filterSelect.addEventListener("change", function() {
+            const value = this.value;
+            const rows = rankingsSection.querySelectorAll("tbody tr");
+            rows.forEach(row => {
+                const continent = row.children[2]?.textContent.toLowerCase();
+                if (value === "all" || continent === value) {
+                    row.style.display = "";
+                } else {
+                    row.style.display = "none";
+                }
+            });
+        });
+    }
 
-    // Injecter dans le tableau HTML des nations
-    const nationBody = document.querySelector("#ranking-nations tbody");
-    nationBody.innerHTML = "";
-
-    sortedNations.forEach((item, index) => {
-        nationBody.innerHTML += `
-            <tr>
-                <td>${index + 1}</td>
-                <td>${item[0]}</td>
-                <td>—</td>
-                <td>${item[1]}</td>
-            </tr>
-        `;
-    });
-}
-
-document.addEventListener("DOMContentLoaded", generateRankings);
-</script>
-<script>
-document.getElementById("show-rankings-btn").addEventListener("click", () => {
-    const section = document.getElementById("rankings");
-
-    if (section.style.display === "none") {
-        section.style.display = "block";
-    } else {
-        section.style.display = "none";
+    // --- Dark mode ---
+    const darkToggle = document.getElementById("darkmode-toggle");
+    if (darkToggle) {
+        darkToggle.addEventListener("click", () => {
+            document.body.classList.toggle("dark");
+        });
     }
 });
-</script>
-    <script>
-document.getElementById("show-rankings-btn").addEventListener("click", () => {
-    const section = document.getElementById("rankings");
-    section.style.display = section.style.display === "none" ? "block" : "none";
-});
-</script>
+</script>  <!-- Script simple pour les onglets + année automatique -->
+   
 </body>
 </html>
