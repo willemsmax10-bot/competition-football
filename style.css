@@ -253,9 +253,6 @@ td {
     font-size: 1rem;
 }
 /* Cache tous les boutons par défaut */
-.competition-buttons .comp-btn {
-    display: none;
-}
 
 .suggestion-item {
     padding: 0.6rem 1rem;
