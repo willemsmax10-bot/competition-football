@@ -471,10 +471,11 @@ body.dark td {
 }
 
 #searchInput {
-    width: 35%;              /* ta largeur actuelle */
+    width: 40%;              /* ta largeur actuelle */
     max-width: 350px;        /* ne change pas */
     min-width: 220px;        /* ne change pas */
-
+    margin: 0 auto; 
+    
     padding: 0.9rem 1.2rem;  /* plus épais = plus visible */
     border-radius: 50px;     /* arrondi moderne */
     border: 2px solid #1ea86b; /* bordure plus forte */
@@ -494,7 +495,7 @@ body.dark td {
     outline: none;
 }
 .search-box {
-    width: 100%;
+    width: 40%;
     display: flex;
     justify-content: center;
     align-items: center;
