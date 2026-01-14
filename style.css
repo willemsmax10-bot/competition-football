@@ -459,3 +459,15 @@ body.dark td {
 .comp-btn {
     display: none;
 }
+.search-box {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    margin: 1.5rem 0;
+}
+
+#searchInput {
+    width: 50%; /* Ajuste ici : 40%, 50%, 60% selon ton goût */
+    max-width: 450px;
+    min-width: 250px;
+}
