@@ -525,3 +525,38 @@ body.dark td {
 
     text-align: left;
 }
+.search-box {
+    position: relative;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    margin: 1.5rem 0;
+}
+
+#searchInput {
+    width: 100%;
+    max-width: 350px;
+    min-width: 220px;
+    margin: 0 auto;
+    display: block;
+
+    border: 2px solid #1ea86b; /* ta bordure */
+    outline: none;             /* supprime la ligne parasite */
+    background: #0f1b2a;
+    z-index: 10;               /* passe au-dessus des suggestions */
+}
+
+.suggestions {
+    position: absolute;
+    top: 100%;                 /* se place juste sous l’input */
+    left: 50%;
+    transform: translateX(-50%);
+    width: 100%;
+    max-width: 350px;
+
+    background: #0f1b2a;
+    border: 1px solid #1ea86b;
+    border-top: none;          /* évite la ligne qui remonte sur l’input */
+    border-radius: 0 0 10px 10px;
+    z-index: 5;
+}
