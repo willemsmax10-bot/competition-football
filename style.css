@@ -463,6 +463,7 @@ body.dark td {
     border-radius: 50px;
 }
 .search-box {
+    position: relative;
     width: 100%;
     display: flex;
     justify-content: center;
@@ -495,6 +496,8 @@ body.dark td {
     outline: none;
 }
 .search-box {
+
+    position: relative;
     width: 40%;
     display: flex;
     justify-content: center;
@@ -505,4 +508,20 @@ body.dark td {
 .search-box > * {
     width: 100%;
     max-width: 350px; /* même largeur que ton input */
+}
+.suggestions {
+    position: absolute;
+    width: 100%;
+    max-width: 350px; /* même largeur que ton input */
+    left: 50%;
+    transform: translateX(-50%);
+    margin-top: 5px;
+
+    background: #0f1b2a;
+    border: 1px solid #1ea86b;
+    border-radius: 10px;
+    padding: 0;
+    z-index: 1000;
+
+    text-align: left;
 }
