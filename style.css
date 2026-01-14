@@ -53,7 +53,25 @@ body {
 .main-content {
     padding: 2rem 0 3rem;
 }
+/* Centrage global du contenu */
+.main-content {
+    max-width: 900px;
+    margin: 0 auto;
+    padding: 2rem 0 3rem;
+}
 
+/* Centrer le bloc "Comment utiliser ce site ?" */
+.intro {
+    max-width: 800px;
+    margin: 0 auto;
+    text-align: center;
+}
+
+/* Centrer les tableaux */
+.competition-block {
+    max-width: 900px;
+    margin: 2rem auto;
+}
 .intro h2,
 .competition-selector h2,
 .competition-block h2 {
@@ -73,6 +91,7 @@ body {
 .competition-buttons {
     display: flex;
     flex-wrap: wrap;
+   justify-content: center;
     gap: 0.5rem;
 }
 
