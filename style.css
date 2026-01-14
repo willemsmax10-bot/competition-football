@@ -492,3 +492,14 @@ body.dark td {
     box-shadow: 0 0 18px rgba(39, 201, 127, 0.45);
     outline: none;
 }
+.search-box {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    margin: 1.5rem 0;
+}
+
+.search-box > * {
+    width: 100%;
+    max-width: 350px; /* même largeur que ton input */
+}
